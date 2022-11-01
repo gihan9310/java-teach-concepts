@@ -30,4 +30,8 @@ public class StudentController {
     public List<StudentDTO> getAll(){
         return StudentDB.getAll();
     }
+    @PatchMapping(value = "")
+    public StudentDTO patch(@RequestBody StudentDTO dto){
+        return StudentDB.update(dto);
+    }
 }
