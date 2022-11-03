@@ -1,0 +1,23 @@
+pipeline{
+    environment {
+      AWS_REGION = 'ap-northeast-1'
+      AWS_DEFAULT_REGION = 'ap-northeast-1'
+     }
+    agent any
+    stages{
+        stage("AWS Demo"){
+            steps{
+                withCredentials([[
+                $class: 'AmazonWebServicesCredentialsBinding',
+                credentialsId: 'aws-jenkis-demo',
+                accessKeyVariable: 'AWS_ACCESS_KEY_ID',
+                secretKeyVariable : 'AWS_SECRET_ACCESS_KEY'
+                ]]){
+                    bat 'aws ec2 describe-instances'
+                }
+            }
+        }
+    }
+}
+
+27c2ceeb2553476ebe7d82f31f08c191
