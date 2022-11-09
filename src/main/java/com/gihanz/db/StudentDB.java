@@ -10,7 +10,7 @@ public class StudentDB {
     private static List<StudentDTO> db = new ArrayList<>();
 
     public static StudentDTO add(StudentDTO dto) {
-        dto.setId(UUID.randomUUID().toString());
+        dto.setId(UUID.randomUUID().node());
         db.add(dto);
         return dto;
     }

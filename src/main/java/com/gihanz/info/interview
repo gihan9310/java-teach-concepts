@@ -1,0 +1,26 @@
+
+nic ,name, bob,salary,department,location
+
+tbl_employees
+
+id
+nic
+name
+dob
+salary
+dep_id fk
+
+
+
+tbl_departments
+id
+name,
+location_id fk
+
+tbl_locations
+id
+place
+
+select e.name from tbl_employees e left join tbl_departments d on d.id = e.id
+left join tbl_locations l  on d.id = l.id
+where l.place ='nugegoda'

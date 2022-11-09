@@ -1,16 +1,21 @@
-package com.gihanz.dtos;
+package com.gihanz.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.gihanz.entities.Student;
-import lombok.AllArgsConstructor;
+import com.gihanz.dtos.StudentDTO;
 import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.ToString;
 import org.springframework.beans.BeanUtils;
 
+import javax.persistence.*;
+
 @Data()
-@NoArgsConstructor
-@AllArgsConstructor
-public class StudentDTO {
+@ToString
+@Entity
+@Table(name = "Students")
+public class Student {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String regNo;
     private String name;
@@ -18,8 +23,8 @@ public class StudentDTO {
     private String email;
 
     @JsonIgnore
-    public Student getEntities(){
-        Student student = new Student();
+    public StudentDTO getDto(){
+        StudentDTO student = new StudentDTO();
         BeanUtils.copyProperties(this,student);
         return student;
     }
