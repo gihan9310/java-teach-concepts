@@ -23,7 +23,7 @@ pipeline {
                     withCredentials([string(credentialsId: 'docker-hub-pwd', variable: 'dockerhubpwd')]) {
                         bat 'docker login -u gihansoft -p HBKhbkdhl99'
                     }
-                    bat 'docker pubat gihansoft/aws-app'
+                    bat 'docker push gihansoft/aws-app'
                 }
            }
        }
