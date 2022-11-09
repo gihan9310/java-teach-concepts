@@ -7,23 +7,23 @@ pipeline {
        stage('Build Maven'){
            steps{
                checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/gihan9310/java-teach-concepts']]])
-               sh 'mvn clean install'
+               bat 'mvn clean install'
            }
        }
        stage('Build docker image'){
             steps{
                 script{
-                    sh 'docker build -t gihansoft/aws-app .'
+                    bat 'docker build -t gihansoft/aws-app .'
                 }
             }
        }
-       stage('push image into hub'){
+       stage('pubat image into hub'){
            steps{
                 script{
                     withCredentials([string(credentialsId: 'docker-hub-pwd', variable: 'dockerhubpwd')]) {
-                        sh 'docker login -u gihansoft -p HBKhbkdhl99'
+                        bat 'docker login -u gihansoft -p HBKhbkdhl99'
                     }
-                    sh 'docker push gihansoft/aws-app'
+                    bat 'docker pubat gihansoft/aws-app'
                 }
            }
        }
